@@ -1,0 +1,7 @@
+Config = {
+    ap="AccessPointName",
+    pw="AccessPointPassword",
+    host="myserver.cool",
+    port=33333,
+    node="SomeRoom",
+}

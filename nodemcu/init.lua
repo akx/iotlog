@@ -26,18 +26,19 @@ function detect_ow_slave(ow_pin, family)
 end
 
 function read_ds18s20_temp(pin, addr)
+    local i, crc
     ow.reset(pin)
     ow.select(pin, addr)
     ow.write(pin, 0x44, 1) -- perform measurement
     tmr.delay(1000000)
-    present = ow.reset(pin)
+    ow.reset(pin)
     ow.select(pin, addr)
     ow.write(pin, 0xBE, 1)
     local data = ''
     for i = 0, 8 do
       data = data .. string.char(ow.read(pin))
     end
-    local crc = ow.crc8(string.sub(data,1,8))
+    crc = ow.crc8(string.sub(data,1,8))
     if crc == data:byte(9) then
       local fpTemp = bit.bor(
         bit.lshift(data:byte(2), 11),
@@ -57,7 +58,7 @@ addr = detect_ow_slave(ow_pin, 0x10)
 
 
 function ping(data)
-    conn = net.createConnection(net.TCP, 0)
+    local conn = net.createConnection(net.TCP, 0)
     conn:on("receive", function(conn, payload) print(payload) end)
     conn:on("connection", function()
         data.node = Config.node
@@ -80,7 +81,7 @@ function t()
     if addr ~= nil then
         data.dstemp = read_ds18s20_temp(ow_pin, addr)
     end    
-    status, temp, humi, temp_dec, humi_dec = dht.read(pin)
+    local status, temp, humi, temp_dec, humi_dec = dht.read(pin)
     if status == dht.OK then
         data.temp = temp
         data.humi = humi

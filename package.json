@@ -4,21 +4,29 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "test": "jest"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.4.1",
     "express": "^4.14.0",
-    "knex": "^0.11.5",
+    "knex": "^0.13.0",
     "shortid": "^2.2.6",
     "sqlite3": "^3.1.4"
   },
   "devDependencies": {
-    "eslint": "^2.13.0",
-    "eslint-config-airbnb-base": "^3.0.1",
-    "eslint-plugin-import": "^1.8.1",
-    "nodemon": "^1.9.2"
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "jest": "^21.2.1",
+    "nodemon": "^1.9.2",
+    "supertest": "^3.0.0"
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/?(*.)(spec|test).js?(x)"
+    ]
   }
 }

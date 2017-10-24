@@ -3,6 +3,7 @@
     "client": "sqlite3",
     "connection": {
       "filename": "./iotlog.sqlite"
-    }
+    },
+    "useNullAsDefault": true
   }
 }

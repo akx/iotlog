@@ -5,8 +5,9 @@ module.exports = {
   },
   "extends": "airbnb-base",
   "rules": {
-    "object-curly-spacing": ["error", "never"],
+    "max-len": ["off"],
     "no-console": ["off"],
+    "newline-per-chained-call": ["off"],
     "comma-dangle": ["error", "only-multiline"],
   }
 };

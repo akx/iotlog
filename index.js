@@ -11,10 +11,10 @@ const KNEX_CONFIG = JSON.parse(process.env.KNEX_CONFIG || `{
   },
   "useNullAsDefault": true
 }`);
+const CORS = !!process.env.CORS;
 
 const knex = Knex(KNEX_CONFIG);
-const app = App({ knex });
-app.disable('x-powered-by');
+const app = App({ knex, cors: CORS });
 
 makeSchema(knex).then(() => {
   app.listen(PORT, HOST, (err) => {

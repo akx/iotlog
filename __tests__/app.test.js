@@ -47,4 +47,14 @@ describe('the app', () => {
       })
       .then(() => app.knex('request').count('* as c').then(([{ c }]) => expect(c).toBe(0)))
   ));
+  it('can retrieve stats', () => (
+    request(app).get('/track?node=foo&temperature=200&humidity=500')
+      .then(() => request(app).get('/track?node=foo&temperature=500&humidity=300'))
+      .then(() => request(app).get('/track?node=foo&temperature=900&humidity=100'))
+      .then(() => request(app).get('/latest'))
+      .then((response) => {
+        expect(response.statusCode).toBe(200);
+        expect(JSON.parse(response.text)).toEqual({ 'foo:humidity': 100, 'foo:temperature': 900 });
+      })
+  ));
 });

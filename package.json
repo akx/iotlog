@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "jest"
   },
   "author": "",
   "license": "MIT",
@@ -19,6 +20,13 @@
     "eslint": "^4.9.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "nodemon": "^1.9.2"
+    "jest": "^21.2.1",
+    "nodemon": "^1.9.2",
+    "supertest": "^3.0.0"
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/?(*.)(spec|test).js?(x)"
+    ]
   }
 }

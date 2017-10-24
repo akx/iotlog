@@ -1,4 +1,5 @@
-node_modules
-*.sqlite
 .idea
+*.sqlite
 config.lua
+coverage
+node_modules

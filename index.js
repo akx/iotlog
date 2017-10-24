@@ -14,6 +14,7 @@ const KNEX_CONFIG = JSON.parse(process.env.KNEX_CONFIG || `{
 
 const knex = Knex(KNEX_CONFIG);
 const app = App({ knex });
+app.disable('x-powered-by');
 
 makeSchema(knex).then(() => {
   app.listen(PORT, HOST, (err) => {
